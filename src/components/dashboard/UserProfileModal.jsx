@@ -103,21 +103,6 @@ export default function UserProfileModal({ profileData, loading: initialLoading,
                         <span className="info-label">Дата регистрации</span>
                         <strong className="info-value">{formatDate(user.createdAt)}</strong>
                       </div>
-                      <div className="info-item">
-                        <span className="info-label">Пароль</span>
-                        <div className="password-field">
-                          <span className="password-value">
-                            {showPassword ? user.password : '•'.repeat(Math.min(user.password?.length || 0, 12))}
-                          </span>
-                          <button 
-                            className="password-toggle-btn"
-                            onClick={() => setShowPassword(!showPassword)}
-                            title={showPassword ? 'Скрыть пароль' : 'Показать пароль'}
-                          >
-                            {showPassword ? '👁️' : '🔒'}
-                          </button>
-                        </div>
-                      </div>
                     </div>
                   </div>
 
@@ -255,3 +240,4 @@ export default function UserProfileModal({ profileData, loading: initialLoading,
     </div>
   );
 }
+
