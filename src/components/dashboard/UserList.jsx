@@ -7,6 +7,7 @@ import { getFilials, getFilialByUserPhone  } from "../../action/filial";
 import { useSelector } from 'react-redux';
 import QRScanner from "./QRScanner";
 import UserCard from './UserCard';
+import UserProfileModal from './UserProfileModal';
 import {
   createInvoice,
   updateInvoice,
@@ -473,7 +474,6 @@ const cancelEdit = () => {
           />
         </div>
 
-        {role === 'admin' ? (
           <button
             onClick={() => setIsScannerOpen(true)}
             style={{
@@ -488,9 +488,7 @@ const cancelEdit = () => {
           >
             Сканировать QR
           </button>
-        ) : (
-          <div style={{ color: '#666', fontSize: 13, padding: '8px 12px' }}>Сканирование QR доступно только администраторам</div>
-        )}
+        
 
         {isScannerOpen && (
         <div
@@ -842,6 +840,15 @@ const cancelEdit = () => {
 
       {/* Детальный профиль пользователя (открывается админом через QR или кликом) */}
       {showProfileModal && (
+        <UserProfileModal 
+          profileData={profileData}
+          loading={profileLoading}
+          onClose={closeProfileModal}
+        />
+      )}
+
+      {/* Legacy profile modal - needed for backwards compatibility */}
+      {false && (
         <div className="modal-overlay2">
           <div className="modal-profile">
             <div className="modal-profile-header">
